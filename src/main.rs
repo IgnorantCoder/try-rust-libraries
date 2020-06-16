@@ -2,7 +2,10 @@
 extern crate derive_new;
 #[macro_use]
 extern crate derive_getters;
+#[macro_use]
+extern crate derive_builder;
 
+mod builder;
 mod getters;
 mod new;
 
@@ -43,6 +46,40 @@ fn main() {
     }
 
     {
+        // try derive builder
+        let user0 = builder::naive::UserBuilder::default()
+            .id(uuid::Uuid::new_v4())
+            .first_name("John".to_owned())
+            .last_name("Smith".to_owned())
+            .build();
+        assert!(user0.is_ok());
+        let user1 = builder::naive::UserBuilder::default()
+            .id(uuid::Uuid::new_v4())
+            .first_name("John".to_owned())
+            .build();
+        assert!(user1.is_err());
+
+        let user2 = builder::library::UserBuilder::default()
+            .id(uuid::Uuid::new_v4())
+            .first_name("John")
+            .last_name("Smith")
+            .age(30)
+            .build();
+        assert!(user2.is_ok());
+        let user3 = builder::library::UserBuilder::default()
+            .id(uuid::Uuid::new_v4())
+            .first_name("John")
+            .last_name("Smith")
+            .build();
+        assert!(user3.is_ok());
+        let user5 = builder::library::UserBuilder::default()
+            .id(uuid::Uuid::new_v4())
+            .first_name("John")
+            .build();
+        assert!(user5.is_err());
+    }
+
+    {
         // apply
         use std::sync::{Arc, Mutex};
         let _counter0 = Arc::new(Mutex::new(0)); // Resultとかもラップするの面倒
@@ -52,7 +89,7 @@ fn main() {
     }
 
     {
-        // boolicator
+        // boolinator
         use boolinator::Boolinator;
 
         #[derive(PartialEq, Debug)]
