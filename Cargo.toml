@@ -12,3 +12,4 @@ uuid = { version = "0.8.1", features = ["v4"] }
 apply = "0.2.2"
 boolinator = "2.4.0"
 derive_builder = "0.9.0"
+derive_more = "0.99.7"

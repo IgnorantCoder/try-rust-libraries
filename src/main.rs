@@ -4,9 +4,12 @@ extern crate derive_new;
 extern crate derive_getters;
 #[macro_use]
 extern crate derive_builder;
+#[macro_use]
+extern crate derive_more;
 
 mod builder;
 mod getters;
+mod more;
 mod new;
 
 fn main() {
@@ -77,6 +80,19 @@ fn main() {
             .first_name("John")
             .build();
         assert!(user5.is_err());
+    }
+
+    {
+        // try derive more
+        println!("{}", more::library::Amount::from(20));
+        assert_eq!(
+            more::library::Amount::from(20) + more::library::Amount::from(30),
+            more::library::Amount::from(50)
+        );
+        assert_eq!(
+            more::library::Amount::from(20) - more::library::Amount::from(30),
+            more::library::Amount::from(-10)
+        );
     }
 
     {

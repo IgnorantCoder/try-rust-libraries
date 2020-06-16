@@ -7,5 +7,6 @@ pub struct User {
     #[builder(setter(into))] // Into<String> が実装されてるものもいれられる
     last_name: String,
     #[builder(setter(into), default)]
+    // defaultつけておけば指定されなければdefault::Defaultがよばれる
     age: Option<u16>,
 }
