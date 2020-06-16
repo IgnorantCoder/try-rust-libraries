@@ -50,4 +50,22 @@ fn main() {
         use apply::Apply;
         let _counter1 = 0.apply(Mutex::new).apply(Arc::new); // 適用したい順番でかけるし嬉しい
     }
+
+    {
+        // boolicator
+        use boolinator::Boolinator;
+
+        #[derive(PartialEq, Debug)]
+        pub enum ErrorType {
+            OhMyGod,
+        }
+
+        assert_eq!(Some(5), true.as_some_from(|| 5));
+        assert_eq!(None, false.as_some_from(|| 5));
+        assert_eq!(Ok(()), true.ok_or_else(|| ErrorType::OhMyGod));
+        assert_eq!(
+            Err(ErrorType::OhMyGod),
+            false.ok_or_else(|| ErrorType::OhMyGod)
+        );
+    }
 }

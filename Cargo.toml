@@ -10,3 +10,4 @@ derive-getters = "0.1.0"
 bigdecimal = "0.1.2"
 uuid = { version = "0.8.1", features = ["v4"] }
 apply = "0.2.2"
+boolinator = "2.4.0"
