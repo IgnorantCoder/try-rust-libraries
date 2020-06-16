@@ -84,7 +84,23 @@ fn main() {
 
     {
         // try derive more
-        println!("{}", more::library::Amount::from(20));
+        assert_eq!(
+            "Amount: 20",
+            format!("{}", more::naive::Amount::from(20)).as_str()
+        );
+        assert_eq!(
+            more::naive::Amount::from(20) + more::naive::Amount::from(30),
+            more::naive::Amount::from(50)
+        );
+        assert_eq!(
+            more::naive::Amount::from(20) - more::naive::Amount::from(30),
+            more::naive::Amount::from(-10)
+        );
+
+        assert_eq!(
+            "Amount: 20",
+            format!("{}", more::naive::Amount::from(20)).as_str()
+        );
         assert_eq!(
             more::library::Amount::from(20) + more::library::Amount::from(30),
             more::library::Amount::from(50)
