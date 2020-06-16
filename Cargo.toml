@@ -5,3 +5,7 @@ authors = ["Yusuke Mori <fr052123@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+derive-new = "0.5.8"
+derive-getters = "0.1.0"
+bigdecimal = "0.1.2"
+uuid = { version = "0.8.1", features = ["v4"] }
