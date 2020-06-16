@@ -8,7 +8,7 @@ mod new;
 
 fn main() {
     {
-        //try derive new
+        // try derive new
         let _user0 = new::naive::User::new(
             "someone".to_owned(),
             new::naive::Gender::new_male(),
@@ -24,6 +24,7 @@ fn main() {
     }
 
     {
+        // try derive getters
         let deal0 = getters::naive::Deal::new(
             bigdecimal::BigDecimal::from(100_000),
             getters::naive::Currency::Jpy,
@@ -39,5 +40,14 @@ fn main() {
 
         let _amount1 = deal1.amount();
         let _currency1 = deal1.currency();
+    }
+
+    {
+        // apply
+        use std::sync::{Arc, Mutex};
+        let _counter0 = Arc::new(Mutex::new(0)); // Resultとかもラップするの面倒
+
+        use apply::Apply;
+        let _counter1 = 0.apply(Mutex::new).apply(Arc::new); // 適用したい順番でかけるし嬉しい
     }
 }
